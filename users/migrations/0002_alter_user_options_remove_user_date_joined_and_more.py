@@ -5,69 +5,105 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('projects', '0002_initial'),
-        ('users', '0001_initial'),
+        ("projects", "0002_initial"),
+        ("users", "0001_initial"),
     ]
 
     operations = [
         migrations.AlterModelOptions(
-            name='user',
-            options={'ordering': ['-id'], 'verbose_name': 'Пользователь', 'verbose_name_plural': 'Пользователи'},
+            name="user",
+            options={
+                "ordering": ["-id"],
+                "verbose_name": "Пользователь",
+                "verbose_name_plural": "Пользователи",
+            },
         ),
         migrations.RemoveField(
-            model_name='user',
-            name='date_joined',
+            model_name="user",
+            name="date_joined",
         ),
         migrations.AlterField(
-            model_name='user',
-            name='about',
-            field=models.TextField(blank=True, max_length=256, verbose_name='О себе'),
+            model_name="user",
+            name="about",
+            field=models.TextField(blank=True, max_length=256, verbose_name="О себе"),
         ),
         migrations.AlterField(
-            model_name='user',
-            name='avatar',
-            field=models.ImageField(upload_to='avatars/', verbose_name='Аватарка пользователя'),
+            model_name="user",
+            name="avatar",
+            field=models.ImageField(
+                upload_to="avatars/", verbose_name="Аватарка пользователя"
+            ),
         ),
         migrations.AlterField(
-            model_name='user',
-            name='email',
-            field=models.EmailField(error_messages={'unique': 'Пользователь с таким email уже существует'}, max_length=254, unique=True, validators=[django.core.validators.EmailValidator()], verbose_name='Email'),
+            model_name="user",
+            name="email",
+            field=models.EmailField(
+                error_messages={"unique": "Пользователь с таким email уже существует"},
+                max_length=254,
+                unique=True,
+                validators=[django.core.validators.EmailValidator()],
+                verbose_name="Email",
+            ),
         ),
         migrations.AlterField(
-            model_name='user',
-            name='favorites',
-            field=models.ManyToManyField(blank=True, related_name='interested_users', to='projects.project', verbose_name='Избранные проекты'),
+            model_name="user",
+            name="favorites",
+            field=models.ManyToManyField(
+                blank=True,
+                related_name="interested_users",
+                to="projects.project",
+                verbose_name="Избранные проекты",
+            ),
         ),
         migrations.AlterField(
-            model_name='user',
-            name='github_url',
-            field=models.URLField(blank=True, null=True, validators=[django.core.validators.URLValidator(), django.core.validators.RegexValidator('^https?://(www\\.)?github\\.com/.*$', message='Ссылка должна вести на GitHub')], verbose_name='Ссылка на GitHub'),
+            model_name="user",
+            name="github_url",
+            field=models.URLField(
+                blank=True,
+                null=True,
+                validators=[
+                    django.core.validators.URLValidator(),
+                    django.core.validators.RegexValidator(
+                        "^https?://(www\\.)?github\\.com/.*$",
+                        message="Ссылка должна вести на GitHub",
+                    ),
+                ],
+                verbose_name="Ссылка на GitHub",
+            ),
         ),
         migrations.AlterField(
-            model_name='user',
-            name='is_active',
-            field=models.BooleanField(default=True, verbose_name='Активен'),
+            model_name="user",
+            name="is_active",
+            field=models.BooleanField(default=True, verbose_name="Активен"),
         ),
         migrations.AlterField(
-            model_name='user',
-            name='is_staff',
-            field=models.BooleanField(default=False, verbose_name='Администратор'),
+            model_name="user",
+            name="is_staff",
+            field=models.BooleanField(default=False, verbose_name="Администратор"),
         ),
         migrations.AlterField(
-            model_name='user',
-            name='name',
-            field=models.CharField(max_length=124, verbose_name='Имя'),
+            model_name="user",
+            name="name",
+            field=models.CharField(max_length=124, verbose_name="Имя"),
         ),
         migrations.AlterField(
-            model_name='user',
-            name='phone',
-            field=models.CharField(max_length=12, unique=True, validators=[django.core.validators.RegexValidator('^(\\+7|8)\\d{10}$', 'Формат: 8XXXXXXXXXX или +7XXXXXXXXXX')], verbose_name='Номер телефона'),
+            model_name="user",
+            name="phone",
+            field=models.CharField(
+                max_length=12,
+                unique=True,
+                validators=[
+                    django.core.validators.RegexValidator(
+                        "^(\\+7|8)\\d{10}$", "Формат: 8XXXXXXXXXX или +7XXXXXXXXXX"
+                    )
+                ],
+                verbose_name="Номер телефона",
+            ),
         ),
         migrations.AlterField(
-            model_name='user',
-            name='surname',
-            field=models.CharField(max_length=124, verbose_name='Фамилия'),
+            model_name="user",
+            name="surname",
+            field=models.CharField(max_length=124, verbose_name="Фамилия"),
         ),
     ]

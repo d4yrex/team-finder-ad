@@ -5,15 +5,25 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('users', '0002_alter_user_options_remove_user_date_joined_and_more'),
+        ("users", "0002_alter_user_options_remove_user_date_joined_and_more"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='user',
-            name='phone',
-            field=models.CharField(blank=True, max_length=12, null=True, unique=True, validators=[django.core.validators.RegexValidator('^(\\+7|8)\\d{10}$', 'Формат: 8XXXXXXXXXX или +7XXXXXXXXXX')], verbose_name='Номер телефона'),
+            model_name="user",
+            name="phone",
+            field=models.CharField(
+                blank=True,
+                max_length=12,
+                null=True,
+                unique=True,
+                validators=[
+                    django.core.validators.RegexValidator(
+                        "^(\\+7|8)\\d{10}$", "Формат: 8XXXXXXXXXX или +7XXXXXXXXXX"
+                    )
+                ],
+                verbose_name="Номер телефона",
+            ),
         ),
     ]

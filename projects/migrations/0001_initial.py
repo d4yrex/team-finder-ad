@@ -6,25 +6,50 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     initial = True
 
-    dependencies = [
-    ]
+    dependencies = []
 
     operations = [
         migrations.CreateModel(
-            name='Project',
+            name="Project",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.CharField(max_length=200)),
-                ('description', models.TextField(blank=True)),
-                ('created_at', models.DateTimeField(default=django.utils.timezone.now)),
-                ('github_url', models.URLField(blank=True, null=True, validators=[django.core.validators.URLValidator(), django.core.validators.RegexValidator('^https?://(www\\.)?github\\.com/.*$')])),
-                ('status', models.CharField(choices=[('open', 'Открыт'), ('closed', 'Закрыт')], default='open', max_length=6)),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("name", models.CharField(max_length=200)),
+                ("description", models.TextField(blank=True)),
+                ("created_at", models.DateTimeField(default=django.utils.timezone.now)),
+                (
+                    "github_url",
+                    models.URLField(
+                        blank=True,
+                        null=True,
+                        validators=[
+                            django.core.validators.URLValidator(),
+                            django.core.validators.RegexValidator(
+                                "^https?://(www\\.)?github\\.com/.*$"
+                            ),
+                        ],
+                    ),
+                ),
+                (
+                    "status",
+                    models.CharField(
+                        choices=[("open", "Открыт"), ("closed", "Закрыт")],
+                        default="open",
+                        max_length=6,
+                    ),
+                ),
             ],
             options={
-                'ordering': ['-created_at'],
+                "ordering": ["-created_at"],
             },
         ),
     ]

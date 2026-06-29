@@ -2,16 +2,17 @@ from pathlib import Path
 
 from decouple import config
 
-
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = config("DJANGO_SECRET_KEY")
 
 DEBUG = config("DJANGO_DEBUG", default=True, cast=bool)
 
-TASK_VERSION = config("TASK_VERSION", default=1, cast=int)
-
-ALLOWED_HOSTS = ["localhost", "127.0.0.1"]
+ALLOWED_HOSTS = config(
+    "DJANGO_ALLOWED_HOSTS",
+    default="localhost,127.0.0.1",
+    cast=lambda v: [host.strip() for host in v.split(",")],
+)
 
 AUTH_USER_MODEL = "users.User"
 
@@ -26,6 +27,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "users.apps.UsersConfig",
     "projects.apps.ProjectsConfig",
+    "common",
 ]
 
 MIDDLEWARE = [
@@ -43,7 +45,7 @@ ROOT_URLCONF = "team_finder.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [BASE_DIR / f"templates_var{TASK_VERSION}"],
+        "DIRS": [BASE_DIR / "templates_var1"],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
@@ -107,8 +109,8 @@ USE_I18N = True
 
 USE_TZ = True
 
-LOGIN_URL = 'users:login'
-LOGIN_REDIRECT_URL = 'projects:list'
+LOGIN_URL = "users:login"
+LOGIN_REDIRECT_URL = "projects:list"
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
