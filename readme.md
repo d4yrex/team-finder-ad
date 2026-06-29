@@ -60,7 +60,7 @@ cp .env_example .env
 | **POSTGRES_PASSWORD** | Пароль пользователя PostgreSQL.                                                                                                                            |
 | **POSTGRES_HOST**     | Адрес сервера БД. В случае локальной разработки localhost.                                                                                                 |
 | **POSTGRES_PORT**     | Порт подключения к БД (по умолчанию `5432`).                                                                                                               |
-| **TASK_VERSION**      | Номер варианта вашего задания. Используется для определения набора HTML-шаблонов.                                                                          |
+| **TASK_VERSION**      | 1                                                                                                                                                          |
 
 ---
 
