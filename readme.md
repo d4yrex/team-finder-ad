@@ -97,6 +97,10 @@ docker compose down
 После заполнения `.env` и настройки базы данных можно запустить сервер разработки:
 
 ```bash
+python manage.py migrate
+```
+
+```bash
 python manage.py runserver
 ```
 

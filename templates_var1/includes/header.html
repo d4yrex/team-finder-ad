@@ -54,12 +54,14 @@
 <div id="userSidebar" class="user-sidebar">
     <div class="sidebar-content">
         <a href="/users/{{ request.user.id }}/"><span>{% include 'includes/svg/profile.html' %} Мой профиль</span></a>
-        <a href="/users/edit-profile/"><span>{% include 'includes/svg/settings.html' %} Редактировать профиль</span></a>
+        {% if user.is_authenticated %}
+        <a href="{% url 'users:edit' user.id %}"><span>{% include 'includes/svg/settings.html' %} Редактировать профиль</span></a>
+        {% endif %}
         <a href="/users/change-password/"><span>{% include 'includes/svg/lock.html' %} Сменить пароль</span></a>
         <a href="#"
            class="share-button"
            data-url="/users/{{ request.user.id }}">
-            {% include 'includes/svg/share.html' %} Поделиться профилем
+        {% include 'includes/svg/share.html' %} Поделиться профилем
         </a>
         <hr class="sidebar-divider">
         <a href="/users/logout/"><span style="color: #e7000b;">{% include 'includes/svg/leave.html' %} Выйти</span></a>
