@@ -10,6 +10,7 @@ class UserAdmin(BaseUserAdmin):
     list_display = ("email", "name", "surname", "phone", "is_active", "is_staff")
     search_fields = ("email", "name", "surname")
     filter_horizontal = ("favorites",)
+    ordering = ('email',)
 
     fieldsets = (
         (None, {"fields": ("email", "password")}),
